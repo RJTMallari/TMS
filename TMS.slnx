@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="tms.client/tms.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="TMS.Server/TMS.Server.csproj" />
+</Solution>
