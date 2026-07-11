@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
-// 1. Define the TypeScript blueprint for your MRT-3 stations
+// 1. Define the TypeScript blueprint of MRT3 stations
 interface Station {
     id: number;
     name: string;
@@ -37,7 +37,7 @@ function App() {
                     borderRadius: '2px'
                 }} />
 
-                {/* Loop through your station data */}
+                {/* Loop through station data */}
                 {stations.map(station => (
                     <div key={station.id} style={{ position: 'relative', marginBottom: '32px' }}>
 
@@ -68,8 +68,8 @@ function App() {
 
     return (
         <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-            <h1 id="tableLabel" style={{ color: '#3b82f6', marginBottom: '4px' }}>Line 3 Tracker</h1>
-            <p style={{ color: '#9ca3af', marginBottom: '40px' }}>Real-time route structural layout</p>
+            <h1 id="tableLabel" style={{ color: '#3b82f6', marginBottom: '4px' }}>MRT 3 Tracker</h1>
+            <p style={{ color: '#9ca3af', marginBottom: '40px' }}>Route structural layout</p>
             {contents}
         </div>
     );
