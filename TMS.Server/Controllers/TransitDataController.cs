@@ -39,7 +39,7 @@ public class TransitDataController : ControllerBase
 
         if (lineId == 2)
         {
-            var lrt2stations = new List<Station>
+            var lrt2Stations = new List<Station>
             {
                 new Station { Id = 51, Name = "Recto", RailLineId = 2, SequenceNumber = 1, Latitude = 14.6038, Longitude = 120.9839 },
                 new Station { Id = 52, Name = "Legarda", RailLineId = 2, SequenceNumber = 2, Latitude = 14.6008, Longitude = 120.9926 },
@@ -55,7 +55,7 @@ public class TransitDataController : ControllerBase
                 new Station { Id = 62, Name = "Marikina-Pasig", RailLineId = 2, SequenceNumber = 12, Latitude = 14.6232, Longitude = 121.0998 },
                 new Station { Id = 63, Name = "Antipolo", RailLineId = 2, SequenceNumber = 13, Latitude = 14.6247, Longitude = 121.1214 }
             };
-            return Ok(lrt2stations);
+            return Ok(lrt2Stations);
         }
 
         if (lineId == 3)
@@ -66,7 +66,7 @@ public class TransitDataController : ControllerBase
                 new Station { Id = 102, Name = "Quezon Avenue", RailLineId = 3, SequenceNumber = 2, Latitude = 14.6425, Longitude = 121.0379 },
                 new Station { Id = 103, Name = "GMA-Kamuning", RailLineId = 3, SequenceNumber = 3, Latitude = 14.6353, Longitude = 121.0433 },
                 new Station { Id = 104, Name = "Araneta Center-Cubao", RailLineId = 3, SequenceNumber = 4, Latitude = 14.6221, Longitude = 121.0526 },
-                new Station { Id = 105, Name = "Santolan-Anonas", RailLineId = 3, SequenceNumber = 5, Latitude = 14.6079, Longitude = 121.0564 },
+                new Station { Id = 105, Name = "Santolan-Annapolis", RailLineId = 3, SequenceNumber = 5, Latitude = 14.6079, Longitude = 121.0564 },
                 new Station { Id = 106, Name = "Ortigas", RailLineId = 3, SequenceNumber = 6, Latitude = 14.5878, Longitude = 121.0567 },
                 new Station { Id = 107, Name = "Shaw Boulevard", RailLineId = 3, SequenceNumber = 7, Latitude = 14.5812, Longitude = 121.0537 },
                 new Station { Id = 108, Name = "Boni", RailLineId = 3, SequenceNumber = 8, Latitude = 14.5739, Longitude = 121.0482 },
