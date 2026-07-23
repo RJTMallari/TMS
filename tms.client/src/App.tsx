@@ -3,6 +3,7 @@ import './App.css';
 import lrt1Fare from "./assets/fares/lrt1.png";
 import lrt2Fare from "./assets/fares/lrt2.jpg";
 import mrt3Fare from "./assets/fares/mrt3.png";
+import TransitMap from "./components/TransitMap";
 
 // Station model 
 interface Station {
@@ -55,8 +56,8 @@ function App() {
         2: lrt2Fare,
         3: mrt3Fare
 
-    }[currentLineId];
-  
+        }[currentLineId];
+ 
 
     const contents = error
         ? <p style={{ color: '#dc3545' }}><strong>Error:</strong> {error}</p>
@@ -204,7 +205,10 @@ function App() {
                 </button>
             </div>
 
+            <TransitMap stations={stations ?? []} />
 
+            {contents}
+            
 
             {contents}
 
