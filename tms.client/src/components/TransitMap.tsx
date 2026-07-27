@@ -67,7 +67,7 @@ function TransitMap({ stations, selectedStation }: TransitMapProps) {
             center={[14.6091, 121.0223]}
             zoom={12}
             style={{
-                height: "500px",
+                height: "100%",
                 width: "100%",
                 borderRadius: "12px"
             }}

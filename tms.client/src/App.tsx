@@ -29,6 +29,7 @@ function App() {
     const [error, setError] = useState<string | null>(null);
     const [selectedStation, setSelectedStation] = useState<Station | null>(null);
     const [showFareMatrix, setShowFareMatrix] = useState(false);
+    const [showMap, setShowMap] = useState(false);
    
     useEffect(() => {
         populateTransitData();
@@ -205,11 +206,6 @@ function App() {
                 </button>
             </div>
 
-            <TransitMap stations={stations ?? []} selectedStation={selectedStation} />
-
-            {contents}
-            
-
             {contents}
 
             {selectedStation && (
@@ -221,17 +217,17 @@ function App() {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                        zIndex: 1000
+                        zIndex: 2000
                     }}
                 >
                     <div
                         style={{
-                            width: "420px",
+                            width: "800px",
+                            maxWidth: "90%",
                             backgroundColor: "#1e293b",
                             borderRadius: "16px",
                             overflow: "hidden",
-                            border: `3px solid ${lineConfig.primaryColor}`,
-                            boxShadow: "0 20px 50px rgba(0,0,0,0.4)"
+                            border: `3px solid ${lineConfig.primaryColor}`
                         }}
                     >
                         {/* Header */}
@@ -240,7 +236,7 @@ function App() {
                                 position: "relative",
                                 backgroundColor: lineConfig.primaryColor,
                                 color: "white",
-                                padding: "20px",
+                                padding: "18px",
                                 textAlign: "center"
                             }}
                         >
@@ -260,40 +256,42 @@ function App() {
                                 ✕
                             </button>
 
-                            <h2 style={{ margin: 0 }}>
-                                🚉 {selectedStation.name}
-                            </h2>
-
-                            <p style={{ margin: "6px 0 0" }}>
-                                {lineConfig.name}
-                            </p>
+                            <h2>🚉 {selectedStation.name}</h2>
                         </div>
 
-                        {/* Body */}
+                        {/* Map */}
+                        <div
+                            style={{
+                                height: "300px"
+                            }}
+                        >
+                            <TransitMap
+                                stations={stations ?? []}
+                                selectedStation={selectedStation}
+                            />
+                        </div>
+
+                        {/* Station Info */}
                         <div
                             style={{
                                 padding: "20px",
                                 color: "white"
                             }}
                         >
-                            <p>
-                                <strong>Station Number</strong><br />
-                                #{selectedStation.sequenceNumber}
-                            </p>
+                            <p><strong>Line:</strong> {lineConfig.name}</p>
 
-                            <p>
-                                <strong>Latitude</strong><br />
-                                {selectedStation.latitude}
-                            </p>
+                            <p><strong>Stop #</strong> {selectedStation.sequenceNumber}</p>
 
-                            <p>
-                                <strong>Longitude</strong><br />
-                                {selectedStation.longitude}
-                            </p>
+                            <p><strong>Latitude:</strong> {selectedStation.latitude}</p>
+
+                            <p><strong>Longitude:</strong> {selectedStation.longitude}</p>
                         </div>
                     </div>
                 </div>
             )}
+
+            
+    
 
             {showFareMatrix && (
                 <div 
@@ -371,6 +369,7 @@ function App() {
             )}
         </div>
     );
+
 
 
     async function fetchRailLines() {
