@@ -205,7 +205,7 @@ function App() {
                 </button>
             </div>
 
-            <TransitMap stations={stations ?? []} />
+            <TransitMap stations={stations ?? []} selectedStation={selectedStation} />
 
             {contents}
             

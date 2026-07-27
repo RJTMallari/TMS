@@ -1,4 +1,5 @@
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
+import { useEffect } from "react";
 
 interface Station {
     id: number;
@@ -11,9 +12,56 @@ interface Station {
 
 interface TransitMapProps {
     stations: Station[];
+    selectedStation: Station | null; 
 }
 
-function TransitMap({ stations }: TransitMapProps) {
+function FitBounds({ stations }: { stations: Station[] }) {
+    const map = useMap();
+
+    useEffect(() => {
+        if (stations.length === 0) return;
+
+        const bounds = stations.map(station => [
+            station.latitude,
+            station.longitude
+        ] as [number, number]);
+
+        map.fitBounds(bounds, {
+            padding: [50, 50]
+        });
+    }, [stations, map]);
+
+    return null;
+}
+
+function FlyToStation({
+    selectedStation,
+}: {
+    selectedStation: Station | null;
+}) {
+    const map = useMap();
+
+    useEffect(() => {
+        if (!selectedStation) return;
+
+        map.flyTo(
+            [
+                selectedStation.latitude,
+                selectedStation.longitude,
+            ],
+            16,
+            {
+                duration: 1.5,
+            }
+        );
+    }, [selectedStation, map]);
+
+    return null;
+}
+
+
+
+function TransitMap({ stations, selectedStation }: TransitMapProps) {
     return (
         <MapContainer
             center={[14.6091, 121.0223]}
@@ -28,6 +76,10 @@ function TransitMap({ stations }: TransitMapProps) {
                 attribution="&copy; OpenStreetMap contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+
+            <FitBounds stations={stations} />
+
+            <FlyToStation selectedStation={selectedStation} />
 
             <Polyline
                 positions={stations.map(station => [
