@@ -16,4 +16,10 @@ public class Station
     public double Latitude { get; set; }
 
     public double Longitude { get; set; }
+
+    public string? Transfer { get; set; }
+
+    public string? FirstTrain { get; set; }
+
+    public string? LastTrain { get; set; }
 }

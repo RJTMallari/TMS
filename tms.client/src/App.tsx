@@ -13,12 +13,55 @@ interface Station {
     sequenceNumber: number;
     latitude: number;
     longitude: number;
+    transfer?: string;
+    firstTrain?: string;
+    lastTrain?: string;
 }
 interface RailLine {
     id: number;
     name: string;
     shortName: string;
     primaryColor: string;
+}
+
+function InfoCard({
+    icon,
+    title,
+    value
+}: {
+    icon: string;
+    title: string;
+    value: string;
+}) {
+    return (
+        <div
+            style={{
+                backgroundColor: "#334155",
+                padding: "16px",
+                borderRadius: "12px",
+                border: "1px solid #475569"
+            }}
+        >
+            <div
+                style={{
+                    fontSize: "14px",
+                    color: "#94a3b8",
+                    marginBottom: "8px"
+                }}
+            >
+                {icon} {title}
+            </div>
+
+            <div
+                style={{
+                    fontSize: "18px",
+                    fontWeight: "bold"
+                }}
+            >
+                {value}
+            </div>
+        </div>
+    );
 }
 
 function App() {
@@ -274,17 +317,35 @@ function App() {
                         {/* Station Info */}
                         <div
                             style={{
-                                padding: "20px",
-                                color: "white"
+                                display: "grid",
+                                gridTemplateColumns: "1fr 1fr",
+                                gap: "12px",
+                                padding: "20px"
                             }}
                         >
-                            <p><strong>Line:</strong> {lineConfig.name}</p>
+                            <InfoCard
+                                icon="🚉"
+                                title="Station Number"
+                                value={`#${selectedStation.sequenceNumber}`}
+                            />
 
-                            <p><strong>Stop #</strong> {selectedStation.sequenceNumber}</p>
+                            <InfoCard
+                                icon="🔄"
+                                title="Transfer"
+                                value={selectedStation.transfer ?? "None"}
+                            />
 
-                            <p><strong>Latitude:</strong> {selectedStation.latitude}</p>
+                            <InfoCard
+                                icon="🕒"
+                                title="First Train"
+                                value={selectedStation.firstTrain ?? "Coming Soon"}
+                            />
 
-                            <p><strong>Longitude:</strong> {selectedStation.longitude}</p>
+                            <InfoCard
+                                icon="🌙"
+                                title="Last Train"
+                                value={selectedStation.lastTrain ?? "Coming Soon"}
+                            />
                         </div>
                     </div>
                 </div>
