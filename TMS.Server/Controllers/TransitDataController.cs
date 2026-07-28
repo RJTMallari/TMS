@@ -62,19 +62,19 @@ public class TransitDataController : ControllerBase
         {
             var mrt3Stations = new List<Station>
             {
-                new Station { Id = 101, Name = "North Avenue", RailLineId = 3, SequenceNumber = 1, Latitude = 14.6531, Longitude = 121.0307 },
-                new Station { Id = 102, Name = "Quezon Avenue", RailLineId = 3, SequenceNumber = 2, Latitude = 14.6425, Longitude = 121.0379 },
-                new Station { Id = 103, Name = "GMA-Kamuning", RailLineId = 3, SequenceNumber = 3, Latitude = 14.6353, Longitude = 121.0433 },
-                new Station { Id = 104, Name = "Araneta Center-Cubao", RailLineId = 3, SequenceNumber = 4, Latitude = 14.6221, Longitude = 121.0526 },
-                new Station { Id = 105, Name = "Santolan-Annapolis", RailLineId = 3, SequenceNumber = 5, Latitude = 14.6079, Longitude = 121.0564 },
-                new Station { Id = 106, Name = "Ortigas", RailLineId = 3, SequenceNumber = 6, Latitude = 14.5878, Longitude = 121.0567 },
-                new Station { Id = 107, Name = "Shaw Boulevard", RailLineId = 3, SequenceNumber = 7, Latitude = 14.5812, Longitude = 121.0537 },
-                new Station { Id = 108, Name = "Boni", RailLineId = 3, SequenceNumber = 8, Latitude = 14.5739, Longitude = 121.0482 },
-                new Station { Id = 109, Name = "Guadalupe", RailLineId = 3, SequenceNumber = 9, Latitude = 14.5670, Longitude = 121.0456 },
-                new Station { Id = 110, Name = "Buendia", RailLineId = 3, SequenceNumber = 10, Latitude = 14.5542, Longitude = 121.0349 },
-                new Station { Id = 111, Name = "Ayala", RailLineId = 3, SequenceNumber = 11, Latitude = 14.5491, Longitude = 121.0281 },
-                new Station { Id = 112, Name = "Magallanes", RailLineId = 3, SequenceNumber = 12, Latitude = 14.5421, Longitude = 121.0194 },
-                new Station { Id = 113, Name = "Taft Avenue", RailLineId = 3, SequenceNumber = 13, Latitude = 14.5376, Longitude = 121.0014 }
+                new Station { Id = 101, Name = "North Avenue", RailLineId = 3, SequenceNumber = 1, Latitude = 14.6531, Longitude = 121.0307, Transfer = "None", FirstTrain = "4:36 AM", LastTrain = "9:30 PM" },
+                new Station { Id = 102, Name = "Quezon Avenue", RailLineId = 3, SequenceNumber = 2, Latitude = 14.6425, Longitude = 121.0379, Transfer = "None", FirstTrain = "4:39 AM", LastTrain = "9:33 PM" },
+                new Station { Id = 103, Name = "GMA-Kamuning", RailLineId = 3, SequenceNumber = 3, Latitude = 14.6353, Longitude = 121.0433, Transfer = "None", FirstTrain = "4:42 AM", LastTrain = "9:36 PM" },
+                new Station { Id = 104, Name = "Araneta Center-Cubao", RailLineId = 3, SequenceNumber = 4, Latitude = 14.6221, Longitude = 121.0526, Transfer = "LRT-2 Araneta Center-Cubao", FirstTrain = "4:46 AM", LastTrain = "9:40 PM" },
+                new Station { Id = 105, Name = "Santolan-Annapolis", RailLineId = 3, SequenceNumber = 5, Latitude = 14.6079, Longitude = 121.0564, Transfer = "None", FirstTrain = "4:49 AM", LastTrain = "9:43 PM" },
+                new Station { Id = 106, Name = "Ortigas", RailLineId = 3, SequenceNumber = 6, Latitude = 14.5878, Longitude = 121.0567, Transfer = "None", FirstTrain = "4:52 AM", LastTrain = "9:46 PM" },
+                new Station { Id = 107, Name = "Shaw Boulevard", RailLineId = 3, SequenceNumber = 7, Latitude = 14.5812, Longitude = 121.0537, Transfer = "None", FirstTrain = "4:55 AM", LastTrain = "9:49 PM" },
+                new Station { Id = 108, Name = "Boni", RailLineId = 3, SequenceNumber = 8, Latitude = 14.5739, Longitude = 121.0482, Transfer = "None", FirstTrain = "4:58 AM", LastTrain = "9:52 PM" },
+                new Station { Id = 109, Name = "Guadalupe", RailLineId = 3, SequenceNumber = 9, Latitude = 14.5670, Longitude = 121.0456, Transfer = "None", FirstTrain = "5:01 AM", LastTrain = "9:55 PM" },
+                new Station { Id = 110, Name = "Buendia", RailLineId = 3, SequenceNumber = 10, Latitude = 14.5542, Longitude = 121.0349, Transfer = "None", FirstTrain = "5:04 AM", LastTrain = "9:58 PM" },
+                new Station { Id = 111, Name = "Ayala", RailLineId = 3, SequenceNumber = 11, Latitude = 14.5491, Longitude = 121.0281, Transfer = "None", FirstTrain = "5:07 AM", LastTrain = "10:01 PM" },
+                new Station { Id = 112, Name = "Magallanes", RailLineId = 3, SequenceNumber = 12, Latitude = 14.5421, Longitude = 121.0194, Transfer = "None", FirstTrain = "5:11 AM", LastTrain = "10:05 PM" },
+                new Station { Id = 113, Name = "Taft Avenue", RailLineId = 3, SequenceNumber = 13, Latitude = 14.5376, Longitude = 121.0014, Transfer = "LRT-1 EDSA", FirstTrain = "5:18 AM", LastTrain = "10:11 PM" }
             };
             return Ok(mrt3Stations);
         }
