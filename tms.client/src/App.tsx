@@ -4,25 +4,8 @@ import lrt1Fare from "./assets/fares/lrt1.png";
 import lrt2Fare from "./assets/fares/lrt2.jpg";
 import mrt3Fare from "./assets/fares/mrt3.png";
 import TransitMap from "./components/TransitMap";
-
-// Station model 
-interface Station {
-    id: number;
-    name: string;
-    railLineId: number;
-    sequenceNumber: number;
-    latitude: number;
-    longitude: number;
-    transfer?: string;
-    firstTrain?: string;
-    lastTrain?: string;
-}
-interface RailLine {
-    id: number;
-    name: string;
-    shortName: string;
-    primaryColor: string;
-}
+import StationManagement from "./components/StationManagement";
+import type { Station, RailLine } from "./types/transit";
 
 function InfoCard({
     icon,
@@ -315,6 +298,7 @@ function App() {
                         </div>
 
                         {/* Station Info */}
+                        
                         <div
                             style={{
                                 display: "grid",
@@ -346,6 +330,18 @@ function App() {
                                 title="Last Train"
                                 value={selectedStation.lastTrain ?? "Coming Soon"}
                             />
+                            <p
+                                style={{
+                                    marginTop: "18px",
+                                    textAlign: "center",
+                                    color: "#94a3b8",
+                                    fontSize: "0.8rem",
+                                    fontStyle: "italic"
+                                }}
+                            >
+                                * * Train schedules are based on official railway timetables where available. Intermediate station times may be estimated for demonstration purposes.
+                            </p>    
+
                         </div>
                     </div>
                 </div>
@@ -428,6 +424,7 @@ function App() {
                     </div>
                 </div>
             )}
+            <StationManagement />
         </div>
     );
 
