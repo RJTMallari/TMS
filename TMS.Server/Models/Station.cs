@@ -9,7 +9,7 @@ public class Station
     public int RailLineId { get; set; }
 
     // Navigation property
-    public RailLine RailLine { get; set; } = null!;
+    public RailLine? RailLine { get; set; } = null!;
 
     public int SequenceNumber { get; set; }
 

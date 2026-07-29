@@ -77,7 +77,7 @@ public class StationsController : ControllerBase
     {
         if (id != updatedStation.Id)
         {
-            return BadRequest();
+            return BadRequest($"URL id {id} does not match station id {updatedStation.Id}");
         }
 
         var existingStation = await _context.Stations.FindAsync(id);
