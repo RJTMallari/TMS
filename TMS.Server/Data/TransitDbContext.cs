@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using TMS.Server.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TMS.Server.Data;
 
-public class TransitDbContext : DbContext
+public class TransitDbContext : IdentityDbContext<ApplicationUser>
 {
     public TransitDbContext(DbContextOptions<TransitDbContext> options)
         : base(options)
