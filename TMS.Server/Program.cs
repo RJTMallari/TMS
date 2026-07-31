@@ -80,7 +80,8 @@ app.UseHttpsRedirection();
 
 app.UseCors("AllowViteClient");
 
-app.UseAuthorization();
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

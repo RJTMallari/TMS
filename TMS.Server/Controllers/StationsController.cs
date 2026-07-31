@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TMS.Server.Data;
 using TMS.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TMS.Server.Controllers;
 
@@ -57,6 +58,7 @@ public class StationsController : ControllerBase
     }
 
     // CREATE!
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreateStation(Station station)
     {
@@ -72,6 +74,7 @@ public class StationsController : ControllerBase
 
 
     // UPDATE!
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateStation(int id, Station updatedStation)
     {
@@ -102,6 +105,7 @@ public class StationsController : ControllerBase
     }
 
     // DELETE!
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteStation(int id)
     {

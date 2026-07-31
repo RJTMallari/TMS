@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Station } from "../types/transit";
-
+import { apiFetch } from "../api";
 
 function StationManagement() {
 
@@ -18,7 +18,7 @@ function StationManagement() {
     });
 
     useEffect(() => {
-        fetch("http://localhost:5030/api/stations")
+        apiFetch("/stations")
             .then(response => {
                 console.log("Status:", response.status);
                 return response.json();
@@ -42,7 +42,7 @@ function StationManagement() {
 
         if (!confirmed) return;
 
-        await fetch(`http://localhost:5030/api/stations/${id}`, {
+        await apiFetch(`/stations/${id}`, {
             method: "DELETE",
         });
 
@@ -58,13 +58,10 @@ function StationManagement() {
         console.log("Sending:", editingStation);
         console.log(JSON.stringify(editingStation, null, 2));
 
-        const response = await fetch(
-            `http://localhost:5030/api/stations/${editingStation.id}`,
+        const response = await apiFetch(
+            `/stations/${editingStation.id}`,
             {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 body: JSON.stringify({
                     id: editingStation.id,
                     name: editingStation.name,
@@ -98,13 +95,10 @@ function StationManagement() {
     };
 
     const createStation = async () => {
-        const response = await fetch(
-            "http://localhost:5030/api/stations",
+        const response = await apiFetch(
+            "/stations",
             {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 body: JSON.stringify(newStation)
             }
         );
@@ -242,9 +236,7 @@ function StationManagement() {
                             <td>{station.firstTrain}</td>
                             <td>{station.lastTrain}</td>
                             <td>
-                                {station.transfer === "None"
-                                    ? "No"
-                                    : station.transfer}
+                                {station.transfer ?? "None"}
                             </td>
                             <td>
                                 <button
