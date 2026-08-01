@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 function Auth() {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [token, setToken] = useState("");
+
+    const { token, login: saveToken } = useAuth();
+
+
 
 
     const register = async () => {
@@ -49,21 +53,11 @@ function Auth() {
 
             console.log("JWT Token:", data.token);
 
-            setToken(data.token);
-
-            localStorage.setItem(
-                "token",
-                data.token
-            );
+            saveToken(data.token);
         }
         else {
             console.log(await response.text());
         }
-    };
-
-    const logout = () => {
-        localStorage.removeItem("token");
-        alert("Logged out successfully!");
     };
 
     return (
@@ -108,10 +102,6 @@ function Auth() {
             <button onClick={login}>
                 Login
             </button>
-            <button onClick={logout}>
-                Logout
-            </button>
-
             {token && (
                 <>
                     <h3>JWT Token</h3>

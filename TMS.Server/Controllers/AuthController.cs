@@ -17,12 +17,15 @@ public class AuthController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IConfiguration _configuration;
+    private readonly RoleManager<IdentityRole> _roleManager;
 
     public AuthController(
     UserManager<ApplicationUser> userManager,
+    RoleManager<IdentityRole> roleManager,
     IConfiguration configuration)
     {
         _userManager = userManager;
+        _roleManager = roleManager;
         _configuration = configuration;
     }
 
@@ -30,6 +33,13 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
+        if (!await _roleManager.RoleExistsAsync("Admin"))
+        {
+            await _roleManager.CreateAsync(
+                new IdentityRole("Admin")
+            );
+        }
+
         var user = new ApplicationUser
         {
             UserName = request.UserName,
@@ -42,6 +52,8 @@ public class AuthController : ControllerBase
         {
             return BadRequest(result.Errors);
         }
+
+        await _userManager.AddToRoleAsync(user, "Admin");
 
         return Ok("User created successfully!");
     }
@@ -63,11 +75,19 @@ public class AuthController : ControllerBase
             return Unauthorized("Invalid username or password.");
         }
 
-        var claims = new[]
+        var roles = await _userManager.GetRolesAsync(user);
+
+        var claims = new List<Claim>
         {
-        new Claim(JwtRegisteredClaimNames.Sub, user.UserName!),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-    };
+            new Claim(JwtRegisteredClaimNames.Sub, user.UserName!),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
+
+        foreach (var role in roles)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, role));
+        }
+
 
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)

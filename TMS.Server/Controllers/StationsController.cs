@@ -58,7 +58,7 @@ public class StationsController : ControllerBase
     }
 
     // CREATE!
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<IActionResult> CreateStation(Station station)
     {
@@ -74,7 +74,7 @@ public class StationsController : ControllerBase
 
 
     // UPDATE!
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateStation(int id, Station updatedStation)
     {
@@ -105,7 +105,7 @@ public class StationsController : ControllerBase
     }
 
     // DELETE!
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteStation(int id)
     {
