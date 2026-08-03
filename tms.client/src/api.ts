@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5030/api";
+const API_URL = "/api";
 
 export async function apiFetch(
     endpoint: string,
