@@ -68,8 +68,9 @@ function Auth() {
                 backgroundColor: "#1e293b",
                 borderRadius: "12px"
             }}
-        >
-            <h2>Register</h2>
+        >   
+            {/*Hidden Login */}
+            <h2>Admin Login</h2>
 
             <input
                 placeholder="Username"
@@ -96,9 +97,11 @@ function Auth() {
 
             <br /><br />
 
+            {/*
             <button onClick={register}>
                 Register
             </button>
+            */}
             <button onClick={login}>
                 Login
             </button>

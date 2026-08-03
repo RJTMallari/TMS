@@ -6,6 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import child_process from 'child_process';
 import { env } from 'process';
+import { VitePWA } from "vite-plugin-pwa";
 
 const baseFolder =
     env.APPDATA !== undefined && env.APPDATA !== ''
@@ -39,7 +40,36 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [plugin()],
+    plugins: [
+        plugin(),
+        VitePWA({
+            registerType: "autoUpdate",
+            devOptions: {
+                enabled: true
+            },
+            manifest: {
+                name: "Transit Management System",
+                short_name: "TMS",
+                description: "Transit Management System for Metro Manila railways",
+                theme_color: "#0f172a",
+                background_color: "#0f172a",
+                display: "standalone",
+                start_url: "/",
+                icons: [
+                    {
+                        src: "icon-192.png",
+                        sizes: "192x192",
+                        type: "image/png"
+                    },
+                    {
+                        src: "icon-512.png",
+                        sizes: "512x512",
+                        type: "image/png"
+                    }
+                ]
+            }
+        })
+    ],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
