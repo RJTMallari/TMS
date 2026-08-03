@@ -84,8 +84,10 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+app.MapGet("/test", () => "API is running");
+
 app.MapControllers();
 
-app.MapFallbackToFile("/index.html");
+app.MapFallbackToFile("{*path:nonfile}", "/index.html");
 
 app.Run();
