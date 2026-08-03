@@ -154,7 +154,11 @@ function HomeContent() {
                                 : "#1e293b",
                         borderRadius: "12px",
                         padding: "16px 20px",
-                        transition: "0.2s",
+                        transition: "all 0.25s ease",
+                        transform:
+                            selectedStation?.id === station.id
+                                ? "scale(1.02)"
+                                : "scale(1)",
                         border:
                             selectedStation?.id === station.id
                                 ? `2px solid ${lineConfig.primaryColor}`
@@ -206,7 +210,7 @@ function HomeContent() {
                             <div
                                 style={{
                                     fontSize: "24px",
-                                    color: "#94a3b8"
+                                    color: lineConfig.primaryColor
                                 }}
                             >
                                 ›
@@ -219,16 +223,81 @@ function HomeContent() {
     return (
         <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
 
-            <h1
+            <div
                 style={{
-                    color: lineConfig.primaryColor,
-                    marginBottom: '4px'
+                    background: "linear-gradient(135deg, #0f172a, #1e293b)",
+                    borderRadius: "18px",
+                    padding: "50px 30px",
+                    textAlign: "center",
+                    marginBottom: "40px",
+                    border: "1px solid #334155"
                 }}
             >
-                {lineConfig.shortName} Tracker
-            </h1>
-            <p style={{ color: '#9ca3af', marginBottom: '30px' }}>
-                Route structural layout
+                <h1
+                    style={{
+                        fontSize: "42px",
+                        margin: 0,
+                        color: "#38bdf8"
+                    }}
+                >
+                    🚆 Transit Management System
+                </h1>
+
+                <p
+                    style={{
+                        fontSize: "18px",
+                        color: "#cbd5e1",
+                        marginTop: "20px",
+                        maxWidth: "700px",
+                        marginInline: "auto"
+                    }}
+                >
+                    Explore Metro Manila's railway network with interactive maps,
+                    station information, train schedules, and fare matrices.
+                </p>
+            </div>
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                    gap: "20px",
+                    marginBottom: "40px"
+                }}
+            >
+                <InfoCard
+                    icon="🚉"
+                    title="Stations"
+                    value={`${stations?.length ?? 0}`}
+                />
+
+                <InfoCard
+                    icon="🚆"
+                    title="Rail Lines"
+                    value={`${railLines.length}`}
+                />
+
+                <InfoCard
+                    icon="🗺️"
+                    title="Interactive Map"
+                    value="Available"
+                />
+            </div>
+            <h2
+                style={{
+                    color: "white",
+                    marginBottom: "8px"
+                }}
+            >
+                🚉 Explore Railway Lines
+            </h2>
+
+            <p
+                style={{
+                    color: "#94a3b8",
+                    marginBottom: "20px"
+                }}
+            >
+                Select a rail line to view its stations, schedules, and fare information.
             </p>
 
             <div style={{
@@ -243,16 +312,20 @@ function HomeContent() {
                             key={line.id}
                             onClick={() => setCurrentLineId(line.id)}
                             style={{
-                                padding: '10px 16px',
-                                borderRadius: '6px',
-                                cursor: 'pointer',
-                                border: 'none',
-                                fontWeight: 600,
-                                background:
+                                padding: "12px 22px",
+                                borderRadius: "999px",
+                                cursor: "pointer",
+                                border: currentLineId === line.id
+                                    ? `2px solid ${line.primaryColor}`
+                                    : "2px solid transparent",
+                                fontWeight: "bold",
+                                fontSize: "15px",
+                                backgroundColor:
                                     currentLineId === line.id
                                         ? line.primaryColor
-                                        : '#334155',
-                                color: '#fff'
+                                        : "#334155",
+                                color: "white",
+                                transition: "all 0.2s ease"
                             }}
                         >
                             {line.shortName}
@@ -267,7 +340,36 @@ function HomeContent() {
                 </button>
             </div>
 
-            {contents}
+            <div
+                style={{
+                    backgroundColor: "#1e293b",
+                    borderRadius: "16px",
+                    border: "1px solid #334155",
+                    padding: "25px",
+                    marginTop: "20px",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.25)"
+                }}
+            >
+                <h2
+                    style={{
+                        marginTop: 0,
+                        color: "white"
+                    }}
+                >
+                    🚉 Station Timeline
+                </h2>
+
+                <p
+                    style={{
+                        color: "#94a3b8",
+                        marginBottom: "25px"
+                    }}
+                >
+                    Browse every station along the selected railway line.
+                </p>
+
+                {contents}
+            </div>
 
             {selectedStation && (
                 <div
@@ -459,6 +561,24 @@ function HomeContent() {
                     </div>
                 </div>
             )}
+            <footer
+                style={{
+                    marginTop: "60px",
+                    textAlign: "center",
+                    color: "#64748b",
+                    fontSize: "14px",
+                    padding: "25px 0",
+                    borderTop: "1px solid #334155"
+                }}
+            >
+                <p style={{ margin: 0 }}>
+                    🚆 Transit Management System
+                </p>
+
+                <p style={{ marginTop: "8px" }}>
+                    Built with React, TypeScript, ASP.NET Core, Entity Framework Core, SQL Server, and Leaflet.
+                </p>
+            </footer>
         </div>
     );
 }

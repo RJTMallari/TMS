@@ -140,69 +140,402 @@ function StationManagement() {
                 CRUD interface.
             </p>
 
-            <p>Total Stations: {stations.length}</p>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "25px"
+                }}
+            >
+                <div>
+                    <h2
+                        style={{
+                            margin: 0,
+                            color: "#38bdf8"
+                        }}
+                    >
+                        🚉 Station Management
+                    </h2>
 
-            <div>
-                <h3>Add New Station</h3>
+                    <p
+                        style={{
+                            color: "#94a3b8",
+                            marginTop: "8px"
+                        }}
+                    >
+                        Manage stations for all rail lines.
+                    </p>
+                </div>
 
-                <input
-                    placeholder="Station Name"
-                    value={newStation.name}
-                    onChange={(e) =>
-                        setNewStation({
-                            ...newStation,
-                            name: e.target.value
-                        })
-                    }
-                />
-
-                <button
-                    onClick={createStation}
+                <div
                     style={{
-                        backgroundColor: "blue",
-                        color: "white",
-                        border: "none",
-                        padding: "8px 15px",
-                        borderRadius: "5px",
-                        cursor: "pointer",
-                        marginTop: "10px"
+                        backgroundColor: "#334155",
+                        padding: "15px 20px",
+                        borderRadius: "10px",
+                        textAlign: "center",
+                        minWidth: "140px"
                     }}
                 >
-                    Add Station
-                </button>
+                    <div
+                        style={{
+                            fontSize: "28px",
+                            fontWeight: "bold"
+                        }}
+                    >
+                        {stations.length}
+                    </div>
+
+                    <div
+                        style={{
+                            color: "#94a3b8"
+                        }}
+                    >
+                        Total Stations
+                    </div>
+                </div>
             </div>
 
-            {editingStation && (
-                <div>
-                    <h3>Edit Station: {editingStation.name}</h3>
+            <div
+                style={{
+                    backgroundColor: "#334155",
+                    padding: "20px",
+                    borderRadius: "12px",
+                    marginBottom: "25px"
+                }}
+            >
+                <h3
+                    style={{
+                        marginTop: 0,
+                        marginBottom: "15px"
+                    }}
+                >
+                    ➕ Add New Station
+                </h3>
 
-                    <label>
-                        Station Name:
-                    </label>
-
+                <div
+                    style={{
+                        display: "flex",
+                        gap: "12px",
+                        alignItems: "center",
+                        flexWrap: "wrap"
+                    }}
+                >
                     <input
-                        value={editingStation.name}
+                        placeholder="Station Name"
+                        value={newStation.name}
                         onChange={(e) =>
-                            setEditingStation({
-                                ...editingStation,
+                            setNewStation({
+                                ...newStation,
                                 name: e.target.value
                             })
                         }
-                    />
-                    <button
-                        onClick={updateStation}
                         style={{
-                            backgroundColor: "green",
+                            flex: 1,
+                            minWidth: "250px",
+                            padding: "10px",
+                            borderRadius: "8px",
+                            border: "1px solid #475569",
+                            backgroundColor: "#1e293b",
+                            color: "white"
+                        }}
+                    />
+
+                    <button
+                        onClick={createStation}
+                        style={{
+                            backgroundColor: "#22c55e",
                             color: "white",
                             border: "none",
-                            padding: "8px 15px",
-                            borderRadius: "5px",
+                            padding: "10px 20px",
+                            borderRadius: "8px",
                             cursor: "pointer",
-                            marginTop: "10px"
+                            fontWeight: "bold"
                         }}
                     >
-                        Save Changes
+                        ➕ Add Station
                     </button>
+                </div>
+            </div>
+
+            {editingStation && (
+                <div
+                    style={{
+                        position: "fixed",
+                        inset: 0,
+                        backgroundColor: "rgba(0,0,0,0.6)",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        zIndex: 2000
+                    }}
+                >
+                    <div
+                        style={{
+                            width: "600px",
+                            maxWidth: "90%",
+                            backgroundColor: "#1e293b",
+                            borderRadius: "16px",
+                            overflow: "hidden",
+                            border: "2px solid #3b82f6"
+                        }}
+                    >
+                        {/* Header */}
+
+                        <div
+                            style={{
+                                backgroundColor: "#3b82f6",
+                                color: "white",
+                                padding: "18px",
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center"
+                            }}
+                        >
+                            <h2 style={{ margin: 0 }}>
+                                ✏️ Edit Station
+                            </h2>
+
+                            <button
+                                onClick={() => setEditingStation(null)}
+                                style={{
+                                    background: "transparent",
+                                    border: "none",
+                                    color: "white",
+                                    fontSize: "24px",
+                                    cursor: "pointer"
+                                }}
+                            >
+                                ✕
+                            </button>
+                        </div>
+
+                        {/* Body */}
+
+                        <div
+                            style={{
+                                padding: "25px"
+                            }}
+                        >
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: "18px"
+                                }}
+                            >
+                                <div>
+                                    <label
+                                        style={{
+                                            display: "block",
+                                            marginBottom: "8px",
+                                            fontWeight: "bold"
+                                        }}
+                                    >
+                                        🚉 Station Name
+                                    </label>
+
+                                    <input
+                                        value={editingStation.name}
+                                        onChange={(e) =>
+                                            setEditingStation({
+                                                ...editingStation,
+                                                name: e.target.value
+                                            })
+                                        }
+                                        style={{
+                                            width: "100%",
+                                            padding: "10px",
+                                            borderRadius: "8px",
+                                            border: "1px solid #475569",
+                                            backgroundColor: "#334155",
+                                            color: "white",
+                                            boxSizing: "border-box"
+                                        }}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        style={{
+                                            display: "block",
+                                            marginBottom: "8px",
+                                            fontWeight: "bold"
+                                        }}
+                                    >
+                                        🚆 Rail Line
+                                    </label>
+
+                                    <select
+                                        value={editingStation.railLineId}
+                                        onChange={(e) =>
+                                            setEditingStation({
+                                                ...editingStation,
+                                                railLineId: Number(e.target.value)
+                                            })
+                                        }
+                                        style={{
+                                            width: "100%",
+                                            padding: "10px",
+                                            borderRadius: "8px",
+                                            border: "1px solid #475569",
+                                            backgroundColor: "#334155",
+                                            color: "white"
+                                        }}
+                                    >
+                                        <option value={1}>LRT-1</option>
+                                        <option value={2}>LRT-2</option>
+                                        <option value={3}>MRT-3</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label
+                                        style={{
+                                            display: "block",
+                                            marginBottom: "8px",
+                                            fontWeight: "bold"
+                                        }}
+                                    >
+                                        🔢 Sequence Number
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        value={editingStation.sequenceNumber}
+                                        onChange={(e) =>
+                                            setEditingStation({
+                                                ...editingStation,
+                                                sequenceNumber: Number(e.target.value)
+                                            })
+                                        }
+                                        style={{
+                                            width: "100%",
+                                            padding: "10px",
+                                            borderRadius: "8px",
+                                            border: "1px solid #475569",
+                                            backgroundColor: "#334155",
+                                            color: "white",
+                                            boxSizing: "border-box"
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        style={{
+                                            display: "block",
+                                            marginBottom: "8px",
+                                            fontWeight: "bold"
+                                        }}
+                                    >
+                                        🔢 Sequence Number
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        value={editingStation.sequenceNumber}
+                                        onChange={(e) =>
+                                            setEditingStation({
+                                                ...editingStation,
+                                                sequenceNumber: Number(e.target.value)
+                                            })
+                                        }
+                                        style={{
+                                            width: "100%",
+                                            padding: "10px",
+                                            borderRadius: "8px",
+                                            border: "1px solid #475569",
+                                            backgroundColor: "#334155",
+                                            color: "white",
+                                            boxSizing: "border-box"
+                                        }}
+                                    />
+                                </div>
+                                <div
+                                    style={{
+                                        display: "grid",
+                                        gridTemplateColumns: "1fr 1fr",
+                                        gap: "15px"
+                                    }}
+                                >
+                                    <div>
+                                        <label>🕒 First Train</label>
+
+                                        <input
+                                            value={editingStation.firstTrain ?? ""}
+                                            onChange={(e) =>
+                                                setEditingStation({
+                                                    ...editingStation,
+                                                    firstTrain: e.target.value
+                                                })
+                                            }
+                                            style={{
+                                                width: "100%",
+                                                padding: "10px",
+                                                borderRadius: "8px",
+                                                backgroundColor: "#334155",
+                                                color: "white",
+                                                border: "1px solid #475569",
+                                                boxSizing: "border-box"
+                                            }}
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label>🌙 Last Train</label>
+
+                                        <input
+                                            value={editingStation.lastTrain ?? ""}
+                                            onChange={(e) =>
+                                                setEditingStation({
+                                                    ...editingStation,
+                                                    lastTrain: e.target.value
+                                                })
+                                            }
+                                            style={{
+                                                width: "100%",
+                                                padding: "10px",
+                                                borderRadius: "8px",
+                                                backgroundColor: "#334155",
+                                                color: "white",
+                                                border: "1px solid #475569",
+                                                boxSizing: "border-box"
+                                            }}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label
+                                            style={{
+                                                display: "block",
+                                                marginBottom: "8px",
+                                                fontWeight: "bold"
+                                            }}
+                                        >
+                                            🔄 Transfer
+                                        </label>
+
+                                        <input
+                                            value={editingStation.transfer ?? ""}
+                                            onChange={(e) =>
+                                                setEditingStation({
+                                                    ...editingStation,
+                                                    transfer: e.target.value
+                                                })
+                                            }
+                                            style={{
+                                                width: "100%",
+                                                padding: "10px",
+                                                borderRadius: "8px",
+                                                backgroundColor: "#334155",
+                                                color: "white",
+                                                border: "1px solid #475569",
+                                                boxSizing: "border-box"
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
 
@@ -210,55 +543,86 @@ function StationManagement() {
                 style={{
                     width: "100%",
                     marginTop: "20px",
-                    borderCollapse: "collapse"
+                    borderCollapse: "collapse",
+                    overflow: "hidden",
+                    borderRadius: "12px",
+                    backgroundColor: "#1e293b"
                 }}
             >
-                <thead>
+                <thead
+                    style={{
+                        backgroundColor: "#0f172a"
+                    }}
+                >
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Rail Line</th>
-                        <th>Sequence</th>
-                        <th>First Train</th>
-                        <th>Last Train</th>
-                        <th>Transfer</th>
-                        <th>Actions</th>
+                        <th style={{ padding: "14px" }}>ID</th>
+                        <th style={{ padding: "14px" }}>Name</th>
+                        <th style={{ padding: "14px" }}>Rail Line</th>
+                        <th style={{ padding: "14px" }}>Sequence</th>
+                        <th style={{ padding: "14px" }}>First Train</th>
+                        <th style={{ padding: "14px" }}>Last Train</th>
+                        <th style={{ padding: "14px" }}>Transfer</th>
+                        <th style={{ padding: "14px" }}>Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {stations.map(station => (
-                        <tr key={station.id}>
-                            <td>{station.id}</td>
-                            <td>{station.name}</td>
-                            <td>{station.railLineId}</td>
-                            <td>{station.sequenceNumber}</td>
-                            <td>{station.firstTrain}</td>
-                            <td>{station.lastTrain}</td>
-                            <td>
+                        <tr
+                            key={station.id}
+                            style={{
+                                borderBottom: "1px solid #334155"
+                            }}
+                        >
+                            <td style={{ padding: "12px", textAlign: "center" }}>{station.id}</td>
+                            <td style={{ padding: "12px", textAlign: "center" }}>{station.name}</td>
+                            <td style={{ padding: "12px", textAlign: "center" }}>{station.railLineId}</td>
+                            <td style={{ padding: "12px", textAlign: "center" }}>{station.sequenceNumber}</td>
+                            <td style={{ padding: "12px", textAlign: "center" }}>{station.firstTrain}</td>
+                            <td style={{ padding: "12px", textAlign: "center" }}>{station.lastTrain}</td>
+                            <td style={{ padding: "12px", textAlign: "center" }}>
                                 {station.transfer ?? "None"}
                             </td>
-                            <td>
+                            <td
+                                style={{
+                                    padding: "12px",
+                                    textAlign: "center"
+                                }}
+                            >
+                                {/* Delete button */}
+
+                                {/* Edit button */}
                                 <button
                                     onClick={() => deleteStation(station.id)}
                                     style={{
-                                        backgroundColor: "red",
+                                        backgroundColor: "#ef4444",
                                         color: "white",
                                         border: "none",
-                                        padding: "6px 12px",
-                                        borderRadius: "5px",
-                                        cursor: "pointer"
+                                        padding: "8px 14px",
+                                        borderRadius: "8px",
+                                        cursor: "pointer",
+                                        fontWeight: "bold",
+                                        marginRight: "8px"
                                     }}
                                 >
-                                    Delete
+                                    🗑 Delete
                                 </button>
-                            </td>
-                            <td>
+                            <td style={{ padding: "12px", textAlign: "center" }}>
                                 <button
                                     onClick={() => editStation(station)}
+                                    style={{
+                                        backgroundColor: "#3b82f6",
+                                        color: "white",
+                                        border: "none",
+                                        padding: "8px 14px",
+                                        borderRadius: "8px",
+                                        cursor: "pointer",
+                                        fontWeight: "bold"
+                                    }}
                                 >
-                                    Edit
-                                </button>
+                                        ✏️ Edit
+                                    </button>
+                                </td>
                             </td>
                         </tr>
                     ))}
