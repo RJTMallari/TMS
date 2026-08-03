@@ -97,11 +97,11 @@ function Auth() {
 
             <br /><br />
 
-            {/*
+            
             <button onClick={register}>
                 Register
             </button>
-            */}
+            
             <button onClick={login}>
                 Login
             </button>

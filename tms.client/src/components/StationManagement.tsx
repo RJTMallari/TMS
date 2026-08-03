@@ -51,48 +51,6 @@ function StationManagement() {
         );
     };
 
-    const updateStation = async () => {
-
-        if (!editingStation) return;
-
-        console.log("Sending:", editingStation);
-        console.log(JSON.stringify(editingStation, null, 2));
-
-        const response = await apiFetch(
-            `/stations/${editingStation.id}`,
-            {
-                method: "PUT",
-                body: JSON.stringify({
-                    id: editingStation.id,
-                    name: editingStation.name,
-                    railLineId: editingStation.railLineId,
-                    sequenceNumber: editingStation.sequenceNumber,
-                    latitude: editingStation.latitude,
-                    longitude: editingStation.longitude,
-                    transfer: editingStation.transfer,
-                    firstTrain: editingStation.firstTrain,
-                    lastTrain: editingStation.lastTrain
-                })
-            }
-        );
-
-        console.log("Status:", response.status);
-        console.log("Message:", await response.text());
-
-
-        if (response.ok) {
-            setStations(
-                stations.map(station =>
-                    station.id === editingStation.id
-                        ? editingStation
-                        : station
-                )
-
-            );
-        }
-
-        setEditingStation(null);
-    };
 
     const createStation = async () => {
         const response = await apiFetch(
