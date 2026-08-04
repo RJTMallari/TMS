@@ -5,7 +5,7 @@ import lrt2Fare from "../assets/fares/lrt2.jpg";
 import mrt3Fare from "../assets/fares/mrt3.png";
 import TransitMap from "./TransitMap";
 import type { Station, RailLine } from "../types/transit";
-
+import { apiFetch } from "../api";
 
 function InfoCard({
     icon,
@@ -59,9 +59,8 @@ function HomeContent() {
 
     const fetchRailLines = async () => {
         try {
-            const response = await fetch(
-                "http://localhost:5030/api/railLines"
-            );
+            const response = await apiFetch("/railLines");
+            
 
             if (response.ok) {
                 const data: RailLine[] = await response.json();
@@ -79,9 +78,7 @@ function HomeContent() {
             setError(null);
             setStations(undefined); // Resets view 
 
-            const response = await fetch(
-                `http://localhost:5030/api/stations/line/${currentLineId}`
-            );
+            const response = await apiFetch(`/stations/line/${currentLineId}`);
             if (response.ok) {
                 const data: Station[] = await response.json();
                 // Track order is correctly displayed
