@@ -1,11 +1,176 @@
 ﻿#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 th, td {
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+@media (max-width: 768px) {
+
+    .station-modal-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* ===========================
+   Responsive Hero Section
+=========================== */
+@media (max-width: 768px) {
+
+    .hero-section {
+        padding: 35px 15px !important;
+    }
+
+    .hero-title {
+        font-size: 32px !important;
+        line-height: 1.2;
+    }
+
+    .hero-description {
+        font-size: 16px !important;
+        line-height: 1.6;
+    }
+}
+
+/* ===========================
+   Responsive Fare Matrix
+=========================== */
+
+.fare-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    .fare-image {
+        max-width: 100%;
+    }
+}
+
+/* ===========================
+   Navbar
+=========================== */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+.logout-button {
+    cursor: pointer;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .nav-link,
+    .logout-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logout-button {
+        padding: 10px;
+    }
+}
+
+/* ===========================
+   Station Cards
+=========================== */
+
+.station-card {
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+    .station-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .station-card.selected {
+        transform: scale(1.02);
+    }
+
+    .station-card.selected:hover {
+        transform: scale(1.02) translateY(-3px);
+    }
+
+    .station-card:active {
+        transform: scale(.98);
+    }
+
+@media (max-width:768px) {
+
+    .station-card {
+        padding: 18px 20px !important;
+    }
+}
+
+.station-time {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}
+
+.station-transfer {
+    margin-top: 8px;
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #334155;
+    color: #38bdf8;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.home-container {
+    width: 100%;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+
+@media(max-width:768px) {
+
+    .home-container {
+        padding: 10px;
+    }
+}
+
+.station-card.selected {
+    transform: scale(1.02);
 }

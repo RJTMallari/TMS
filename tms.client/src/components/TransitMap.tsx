@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import { useEffect } from "react";
+import { ZoomControl } from "react-leaflet";
 
 interface Station {
     id: number;
@@ -66,6 +67,7 @@ function TransitMap({ stations, selectedStation }: TransitMapProps) {
         <MapContainer
             center={[14.6091, 121.0223]}
             zoom={12}
+            zoomControl={false}
             style={{
                 height: "100%",
                 width: "100%",
@@ -76,6 +78,8 @@ function TransitMap({ stations, selectedStation }: TransitMapProps) {
                 attribution="&copy; OpenStreetMap contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+
+            <ZoomControl position="bottomright" />
 
             <FitBounds stations={stations} />
 
@@ -98,7 +102,7 @@ function TransitMap({ stations, selectedStation }: TransitMapProps) {
                     position={[station.latitude, station.longitude]}
                 >
                     <Popup>
-                        <strong>{station.name}</strong>
+                        <strong className="station-name">{station.name}</strong>
                         <br />
                         Stop #{station.sequenceNumber}
                     </Popup>

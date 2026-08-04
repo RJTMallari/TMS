@@ -9,6 +9,7 @@ function Navbar() {
 
     return (
         <nav
+            className="navbar"
             style={{
                 display: "flex",
                 gap: "20px",
@@ -19,13 +20,13 @@ function Navbar() {
             }}
         >
 
-            <Link to="/">
+            <Link className="nav-link" to="/">
                 Home
             </Link>
 
 
             {!token && (
-                <Link to="/login">
+                <Link className="nav-link" to="/login">
                     Login
                 </Link>
             )}
@@ -33,11 +34,12 @@ function Navbar() {
 
             {token && (
                 <>
-                    <Link to="/admin">
+                    <Link className="nav-link" to="/admin">
                         Admin
                     </Link>
 
                     <button
+                        className="logout-button"
                         onClick={() => {
                             logout();
                             navigate("/");

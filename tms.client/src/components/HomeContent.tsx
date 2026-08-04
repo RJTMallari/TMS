@@ -126,7 +126,7 @@ function HomeContent() {
         ? <p style={{ color: '#dc3545' }}><strong>Error:</strong> {error}</p>
         : stations === undefined
             ? <p><em>Loading Stations... Please ensure your backend is running on port 5030.</em></p>
-            : <div style={{ position: 'relative', paddingLeft: '32px', textAlign: 'left', maxWidth: '400px', margin: '0 auto' }}>
+            : <div style={{ position: 'relative', paddingLeft: '32px', textAlign: 'left', width: '100%', maxWidth: '700px', margin: '0 auto' }}>
 
 
                 <div style={{
@@ -141,26 +141,28 @@ function HomeContent() {
                 }} />
 
                 {stations.map(station => (
-                    <div key={station.id} onClick={() => setSelectedStation(station)} style={{
-                        position: "relative",
-                        marginBottom: "16px",
-                        cursor: "pointer",
-                        backgroundColor:
-                            selectedStation?.id === station.id
-                                ? "#334155"
-                                : "#1e293b",
-                        borderRadius: "12px",
-                        padding: "16px 20px",
-                        transition: "all 0.25s ease",
-                        transform:
-                            selectedStation?.id === station.id
-                                ? "scale(1.02)"
-                                : "scale(1)",
-                        border:
-                            selectedStation?.id === station.id
-                                ? `2px solid ${lineConfig.primaryColor}`
-                                : "2px solid transparent"
-                    }}>
+                    <div
+                        key={station.id}
+                        className={`station-card ${selectedStation?.id === station.id
+                                ? "selected"
+                                : ""
+                            }`}
+                        onClick={() => setSelectedStation(station)}
+                        style={{
+                            position: "relative",
+                            marginBottom: "16px",
+                            backgroundColor:
+                                selectedStation?.id === station.id
+                                    ? "#334155"
+                                    : "#1e293b",
+                            borderRadius: "12px",
+                            padding: "16px 20px",
+                            border:
+                                selectedStation?.id === station.id
+                                    ? `2px solid ${lineConfig.primaryColor}`
+                                    : "2px solid transparent"
+                        }}
+                    >
 
 
                         <div style={{
@@ -202,6 +204,20 @@ function HomeContent() {
                                 >
                                     Stop #{station.sequenceNumber}
                                 </div>
+
+                                <div className="station-time">
+                                    🚆 First Train: {station.firstTrain}
+                                </div>
+
+                                <div className="station-time">
+                                    🌙 Last Train: {station.lastTrain}
+                                </div>
+
+                                {station.transfer && (
+                                    <div className="station-transfer">
+                                        🔄 Transfer: {station.transfer}
+                                    </div>
+                                )}
                             </div>
 
                             <div
@@ -218,9 +234,10 @@ function HomeContent() {
             </div>;
 
     return (
-        <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+        <div className="home-container">
 
             <div
+                className="hero-section"
                 style={{
                     background: "linear-gradient(135deg, #0f172a, #1e293b)",
                     borderRadius: "18px",
@@ -231,6 +248,7 @@ function HomeContent() {
                 }}
             >
                 <h1
+                    className="hero-title"
                     style={{
                         fontSize: "42px",
                         margin: 0,
@@ -241,6 +259,7 @@ function HomeContent() {
                 </h1>
 
                 <p
+                    className="hero-description"
                     style={{
                         fontSize: "18px",
                         color: "#cbd5e1",
@@ -300,6 +319,7 @@ function HomeContent() {
             <div style={{
                 display: 'flex',
                 gap: '10px',
+                flexWrap: "wrap",
                 justifyContent: 'center',
                 marginBottom: '40px'
             }}>
@@ -309,9 +329,9 @@ function HomeContent() {
                             key={line.id}
                             onClick={() => setCurrentLineId(line.id)}
                             style={{
+                                minWidth: "140px",
                                 padding: "12px 22px",
                                 borderRadius: "999px",
-                                cursor: "pointer",
                                 border: currentLineId === line.id
                                     ? `2px solid ${line.primaryColor}`
                                     : "2px solid transparent",
@@ -376,7 +396,10 @@ function HomeContent() {
                         backgroundColor: "rgba(0,0,0,0.6)",
                         display: "flex",
                         justifyContent: "center",
-                        alignItems: "center",
+                        alignItems: "flex-start",
+                        overflowY: "auto",
+                        paddingTop: "20px",
+                        paddingBottom: "20px",
                         zIndex: 2000
                     }}
                 >
@@ -410,7 +433,6 @@ function HomeContent() {
                                     border: "none",
                                     color: "white",
                                     fontSize: "24px",
-                                    cursor: "pointer"
                                 }}
                             >
                                 ✕
@@ -434,6 +456,7 @@ function HomeContent() {
                         {/* Station Info */}
 
                         <div
+                            className="station-modal-grid"
                             style={{
                                 display: "grid",
                                 gridTemplateColumns: "1fr 1fr",
@@ -528,7 +551,6 @@ function HomeContent() {
                                     border: "none",
                                     color: "white",
                                     fontSize: "24px",
-                                    cursor: "pointer"
                                 }}
                             >
                                 X
@@ -547,6 +569,7 @@ function HomeContent() {
                             }}
                         >
                             <img
+                                className="fare-image"
                                 src={fareMatrix}
                                 alt="Fare Matrix"
                                 style={{

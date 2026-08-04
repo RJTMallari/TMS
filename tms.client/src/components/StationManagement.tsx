@@ -541,15 +541,7 @@ function StationManagement() {
                             <td style={{ padding: "12px", textAlign: "center" }}>
                                 {station.transfer ?? "None"}
                             </td>
-                            <td
-                                style={{
-                                    padding: "12px",
-                                    textAlign: "center"
-                                }}
-                            >
-                                {/* Delete button */}
-
-                                {/* Edit button */}
+                           
                                 <button
                                     onClick={() => deleteStation(station.id)}
                                     style={{
@@ -581,7 +573,6 @@ function StationManagement() {
                                         ✏️ Edit
                                     </button>
                                 </td>
-                            </td>
                         </tr>
                     ))}
                 </tbody>
