@@ -2,6 +2,8 @@
 
 A web-based Train Management System developed using ASP.NET Core and React.
 
+Video Demo URL: https://www.youtube.com/watch?v=xvm7Mrwh5-c
+
 ## Description
 
 Transit Management System (TMS) is a full-stack web application designed to provide commuters with an interactive way to explore Metro Manila's railway network. The application allows users to view railway lines on an interactive map, browse stations, and access important station information such as first and last train schedules, transfer stations, and station locations.
